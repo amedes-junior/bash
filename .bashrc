@@ -78,13 +78,13 @@ if [ $UID -eq "0" ]; then
 
 ## Cores e efeitos do Usuario root
 
-PS1="$G┌─$(parse_git_branch)[$BR\u$G]$BY@$G[$BW${HOSTNAME%%.*}$G]$B:\w\n$G└──>$BR \\$ $NONE"
+PS1="$G┌─\$(parse_git_branch)[$BR\u$G]$BY@$G[$BW${HOSTNAME%%.*}$G]$B:\w\n$G└──>$BR \\$ $NONE"
 
 else
 
 ## Cores e efeitos do usuário comum
 
-PS1="$BR┌─[$BM\$(~/.rvm/bin/rvm-prompt)$BR][$BG\u$BR]$BY@$BR[$BW${HOSTNAME%%.*}$BR]$B:\w\n$BR└──>$BG \$(parse_git_branch)\$ $NONE"
+PS1="$BR┌─\$(parse_git_branch)[$BM\$(~/.rvm/bin/rvm-prompt)$BR][$BG\u$BR]$BY@$BR[$BW${HOSTNAME%%.*}$BR]$B:\w\n$BR└──>$BG \\$ $NONE"
 
 fi # Fim da condição if
 
