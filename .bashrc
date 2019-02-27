@@ -16,6 +16,11 @@
 # Configurações Gerais
 #-----------------------------------------------
 
+parse_git_branch() {
+ git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+
 # Se não estiver rodando interativamente, não fazer nada
 [ -z "$PS1" ] && return
 
@@ -73,13 +78,13 @@ if [ $UID -eq "0" ]; then
 
 ## Cores e efeitos do Usuario root
 
-PS1="$G┌─[$BR\u$G]$BY@$G[$BW${HOSTNAME%%.*}$G]$B:\w\n$G└──>$BR \\$ $NONE"
+PS1="$G┌─$(parse_git_branch)[$BR\u$G]$BY@$G[$BW${HOSTNAME%%.*}$G]$B:\w\n$G└──>$BR \\$ $NONE"
 
 else
 
 ## Cores e efeitos do usuário comum
 
-PS1="$BR┌─[$BM\$(~/.rvm/bin/rvm-prompt)$BR][$BG\u$BR]$BY@$BR[$BW${HOSTNAME%%.*}$BR]$B:\w\n$BR└──>$BG \\$ $NONE"
+PS1="$BR┌─$(parse_git_branch)[$BM\$(~/.rvm/bin/rvm-prompt)$BR][$BG\u$BR]$BY@$BR[$BW${HOSTNAME%%.*}$BR]$B:\w\n$BR└──>$BG \\$ $NONE"
 
 fi # Fim da condição if
 
@@ -144,3 +149,11 @@ if [ -e ~/.oracle ]; then
 fi
 
 
+
+#if [ "$color_prompt" = yes ]; then
+# PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;31m\] $(parse_git_branch)\[\033[00m\]\$PS1"
+#else
+# PS1="${debian_chroot:+($debian_chroot)}\u@\h:\w$(parse_git_branch)\$PS1"
+#fi
+
+unset color_prompt force_color_prompt
