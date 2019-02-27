@@ -84,7 +84,7 @@ else
 
 ## Cores e efeitos do usuário comum
 
-PS1="$BR┌─$(parse_git_branch)[$BM\$(~/.rvm/bin/rvm-prompt)$BR][$BG\u$BR]$BY@$BR[$BW${HOSTNAME%%.*}$BR]$B:\w\n$BR└──>$BG \\$ $NONE"
+PS1="$BR┌─[$BM\$(~/.rvm/bin/rvm-prompt)$BR][$BG\u$BR]$BY@$BR[$BW${HOSTNAME%%.*}$BR]$B:\w\n$BR└──>$BG \$(parse_git_branch)\$ $NONE"
 
 fi # Fim da condição if
 
